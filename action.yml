@@ -1,0 +1,8 @@
+name: 'Words Really Matter'
+description: 'Programmicly change master to leader and slave to follower'
+branding:
+  icon: 'book-open'
+  color: 'green'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
