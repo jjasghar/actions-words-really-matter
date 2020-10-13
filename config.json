@@ -1,0 +1,11 @@
+{
+	"master": "primary",
+	"slave": "secondary",
+	"blacklist": "denylist",
+	"whitelist": "allowlist",
+	"grandfathered": "legacy",
+	"guys": "folks",
+	"man hours": "person hours",
+	"sanity check": "confidence check",
+	"dummy value": "placeholder value"
+}
