@@ -1,6 +1,6 @@
-# Words Matter
+# words-matter
 
-> THIS IS A WORK IN PROGRESS. DO NOT USE!
+There's only one script in the repo. It replaces problematic words in a code base. It specifically looks at markdown files only. There are multiple ways to run this script.
 
 ## Scope
 
@@ -11,15 +11,73 @@ instance of `Master` to `Leader`. As a bonus, it also does the same thing with
 The idea is that this can create a PR for repos via GitHub Actions so we as developers
 can have bots make sure we start to take these words out of our vocabulary.
 
-## Usage
+### Run in a container
 
-If you want to run the container:
+There is a [containerized version](Dockerfile) of the script Run these commands from your project root:
 
 ```bash
 docker build -t words-matter .
 cd <to source code>
-docker run -v $PWD:/mnt words-matter
+docker run -v `pwd`:/source words-matter
 ```
+
+### Run as a GitHub Action
+
+The script is also available as a [GitHub Action](action.yml). See this [repo](https://github.com/stevemar/testing-images) as an example. To use it in your repository perform the following:
+
+1. Create a [GitHub Secret](https://developer.github.com/v3/actions/secrets/) with the key name `GH_TOKEN` and it's value be a [GitHub API key](https://github.com/settings/tokens).
+
+2. Create a file in `.github/workflows/` and paste the following code:
+
+   ```yaml
+
+   on:
+     push:
+       branches:    
+         - master
+
+   jobs:
+     rm_old_images:
+       runs-on: ubuntu-latest
+       name: A job to remove images
+       steps:
+         - name: Checking out our code
+           uses: actions/checkout@master
+         - name: Remove the images
+           uses: jjasghar/actions-words-really-matter@v1.0.1
+         - name: Create Pull Request
+           uses: peter-evans/create-pull-request@v2
+           with:
+             token: ${{ secrets.GH_TOKEN }}
+             commit-message: Remove problematic words
+             title: '[Automated PR] Remove problematic words'
+             body: |
+               Found a problematic words that can be replaced
+
+               [1]: https://github.com/jjasghar/actions-words-really-matter
+         - name: Check outputs
+           run: |
+             echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+             echo "Pull Request Number - ${{ steps.cpr.outputs.pr_number }}"
+     ```
+
+### Run locally
+
+Just clone the repo, or copy and paste the code, and run it.
+
+```bash
+./entrypoint.sh
+```
+
+## Tips
+
+If you want to re-build this with debug logs, just add this line to the `Dockerfile`:
+
+```Dockerfile
+ENV DEBUG=true
+```
+
+Re-build it locally and run it.
 
 ## License & Authors
 
