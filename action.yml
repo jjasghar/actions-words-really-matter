@@ -1,5 +1,5 @@
-name: 'Words Really Matter'
-description: 'Programmicly change master to leader and slave to follower'
+name: 'Words Matter'
+description: 'Change problematic words'
 branding:
   icon: 'book-open'
   color: 'green'

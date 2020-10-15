@@ -1,17 +1,20 @@
 # Words Matter
 
+> THIS IS A WORK IN PROGRESS. DO NOT USE!
+
 ## Scope
 
 This is a simple docker container that walks through a directory and changes any
-instance of `Master` to `Leader`. As a bonus, it also does the same thing with 
+instance of `Master` to `Leader`. As a bonus, it also does the same thing with
 `Slave` to `Follower`.
 
 The idea is that this can create a PR for repos via GitHub Actions so we as developers
 can have bots make sure we start to take these words out of our vocabulary.
 
-## Usage 
+## Usage
 
 If you want to run the container:
+
 ```bash
 docker build -t words-matter .
 cd <to source code>
@@ -40,4 +43,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
