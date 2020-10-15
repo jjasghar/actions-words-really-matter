@@ -31,7 +31,7 @@ do
 
     for j in $(ag --ignore-dir={.git} --ignore=main.sh -G ".md" -l $i .);
     do
-        gsed -i "s/$i/${dict[$i]}/g" $j
+        sed -i "s/$i/${dict[$i]}/g" $j
         counter=$((counter+1))
     done
 
