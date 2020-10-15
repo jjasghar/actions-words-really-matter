@@ -29,7 +29,7 @@ do
     # print key=value
     echo "$i"="${dict[$i]}"
 
-    for j in $(ag --ignore-dir={.git} --ignore=main.sh -G ".md" -l $i .);
+    for j in $(ag --ignore-dir={.git} --ignore=entrypoint.sh -G ".md" -l $i .);
     do
         sed -i "s/$i/${dict[$i]}/g" $j
         counter=$((counter+1))
