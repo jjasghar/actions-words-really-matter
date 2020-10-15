@@ -5,13 +5,14 @@ There's only one script in the repo. It replaces problematic words in a code bas
 ## Scope
 
 This is a simple docker container that walks through a directory and changes any
-instance of `Master` to `Leader`. As a bonus, it also does the same thing with
-`Slave` to `Follower`.
+instance of some problematic words to something more socially acceptable, for instance:
+`slave` to `follower` or `master` to `leader`. You can look at the `dict` we created
+[here][here] are more then willing to accept PRs to add to them.
 
 The idea is that this can create a PR for repos via GitHub Actions so we as developers
 can have bots make sure we start to take these words out of our vocabulary.
 
-### Run in a container
+### Run in a container (aka locally)
 
 There is a [containerized version](Dockerfile) of the script Run these commands from your project root:
 
@@ -43,8 +44,8 @@ The script is also available as a [GitHub Action](action.yml). See this [repo](h
        steps:
          - name: Checking out our code
            uses: actions/checkout@master
-         - name: Remove the images
-           uses: jjasghar/actions-words-really-matter@v1.0.1
+         - name: Remove the problematic words
+           uses: jjasghar/actions-words-really-matter@v2.0.0
          - name: Create Pull Request
            uses: peter-evans/create-pull-request@v2
            with:
@@ -60,14 +61,6 @@ The script is also available as a [GitHub Action](action.yml). See this [repo](h
              echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
              echo "Pull Request Number - ${{ steps.cpr.outputs.pr_number }}"
      ```
-
-### Run locally
-
-Just clone the repo, or copy and paste the code, and run it.
-
-```bash
-./entrypoint.sh
-```
 
 ## Tips
 
@@ -101,3 +94,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[here]: https://github.com/jjasghar/actions-words-really-matter/blob/master/entrypoint.sh#L22-L24
