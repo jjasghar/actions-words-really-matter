@@ -1,21 +1,44 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-cd /mnt
+# Copyright IBM 2018-2020 All Rights Reserved
+#
+# SPDX-License-Identifier: MIT
+#
 
-# -i for case insensitive search
-# --ignore-file for the script
-# --ignore-dir for .git
-# ag uses files in .gitignore by default
+declare -A dict
 
+[[ -n ${DEBUG} ]] && set -eox
 
+if ! [ -z $1 ]; then
+    if [[ -d $1 ]]
+    then
+        cd $1
+    fi
+fi
 
+echo "Looking for problematic words in $(pwd)"
 
+counter=0
+dict=( ["master"]="leader" ["slave"]="follower"
+       ["blacklist"]="denylist" ["whitelist"]="allowlist"
+       ["grandfathered"]="legacy" ["guys"]="folks")
 
+# Loop over the dictionary
+for i in "${!dict[@]}"
+do
+    # print key=value
+    echo "$i"="${dict[$i]}"
 
+    for j in $(ag --ignore-dir={.git} --ignore=main.sh -G ".md" -l $i .);
+    do
+        gsed -i "s/$i/${dict[$i]}/g" $j
+        counter=$((counter+1))
+    done
 
+done
 
-
-#for i in $(ag --ignore-dir={.git} --ignore=script.sh -l Master .);
-#do
-#	sed -i s/Master/Leader/g $i
-#done
+if [ "$counter" -eq "0" ]; then
+    echo "No problematic words were found."
+else
+    echo "A total of $counter problematic words were marked for replacement."
+fi
