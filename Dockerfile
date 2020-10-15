@@ -1,9 +1,7 @@
-FROM alpine:latest
+FROM bash:4.4
 
-RUN apk add the_silver_searcher sed
+RUN apk add --no-cache the_silver_searcher sed
 
-COPY entrypoint.sh /
+COPY entrypoint.sh .
 
-WORKDIR /mnt
-
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [ "bash", "/entrypoint.sh", "/source" ]
