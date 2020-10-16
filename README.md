@@ -50,8 +50,8 @@ To use this function in your repository perform the following steps:
        steps:
          - name: Checking out our code
            uses: actions/checkout@master
-         - name: Remove problematic words
-           uses: jjasghar/actions-words-really-matter@v2.0.0
+         - name: Remove the problematic words
+           uses: jjasghar/actions-words-really-matter@v2.0.1
          - name: Create Pull Request
            uses: peter-evans/create-pull-request@v2
            with:
@@ -80,7 +80,7 @@ Re-build it locally and run it.
 
 ## License & Authors
 
-If you would like to see the detailed LICENCE click [here](LICENCE).
+If you would like to see the detailed LICENCE click [here](./LICENSE).
 
 - Author: JJ Asghar <awesome@ibm.com>
 - Author: Steve Martinelli <stevemar@ca.ibm.com>
