@@ -7,7 +7,7 @@ There's only one script in the repo. It replaces problematic words in a code bas
 This is a simple docker container that walks through a directory and changes any
 instance of some problematic words to something more socially acceptable, for instance:
 `slave` to `follower` or `master` to `leader`. You can look at the `dict` we created
-[here][here] are more then willing to accept PRs to add to them.
+[here](https://github.com/jjasghar/actions-words-really-matter/blob/master/entrypoint.sh#L22-L24) and are more than willing to accept PRs to add to the list.
 
 The idea is that this can create a PR for repos via GitHub Actions so we as developers
 can have bots make sure we start to take these words out of our vocabulary.
@@ -22,9 +22,15 @@ cd <to source code>
 docker run -v `pwd`:/source words-matter
 ```
 
+> You can of course take the [script](entrypoint.sh) itself and run it locally, just be aware that you need use bash 4.0 or later and you'll have to push your own changes.
+
 ### Run as a GitHub Action
 
-The script is also available as a [GitHub Action](action.yml). See this [repo](https://github.com/stevemar/testing-images) as an example. To use it in your repository perform the following:
+The script can also be run as a [GitHub Action](action.yml) and is available in the [GitHub Action Marketplace](https://github.com/marketplace/actions/words-really-matter).
+
+For an example run check out this [sample output](https://github.com/jjasghar/master-to-leader-tester/actions/runs/309359300) and the [corresponding pull request](https://github.com/jjasghar/master-to-leader-tester/pull/3/files) is generated.
+
+To use this function in your repository perform the following steps:
 
 1. Create a [GitHub Secret](https://developer.github.com/v3/actions/secrets/) with the key name `GH_TOKEN` and it's value be a [GitHub API key](https://github.com/settings/tokens).
 
@@ -34,17 +40,17 @@ The script is also available as a [GitHub Action](action.yml). See this [repo](h
 
    on:
      push:
-       branches:    
+       branches:
          - master
 
    jobs:
-     rm_old_images:
+     words-matter:
        runs-on: ubuntu-latest
-       name: A job to remove images
+       name: A job to remove problematic words
        steps:
          - name: Checking out our code
            uses: actions/checkout@master
-         - name: Remove the problematic words
+         - name: Remove problematic words
            uses: jjasghar/actions-words-really-matter@v2.0.0
          - name: Create Pull Request
            uses: peter-evans/create-pull-request@v2
@@ -74,25 +80,7 @@ Re-build it locally and run it.
 
 ## License & Authors
 
-If you would like to see the detailed LICENCE click [here](./LICENCE).
+If you would like to see the detailed LICENCE click [here](LICENCE).
 
 - Author: JJ Asghar <awesome@ibm.com>
 - Author: Steve Martinelli <stevemar@ca.ibm.com>
-
-```text
-Copyright:: 2020- IBM, Inc
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
-
-[here]: https://github.com/jjasghar/actions-words-really-matter/blob/master/entrypoint.sh#L22-L24
