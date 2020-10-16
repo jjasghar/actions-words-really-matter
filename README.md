@@ -1,4 +1,4 @@
-# words-matter
+# words-really-matter
 
 There's only one script in the repo. It replaces problematic words in a code base. It specifically looks at markdown files only. There are multiple ways to run this script.
 
