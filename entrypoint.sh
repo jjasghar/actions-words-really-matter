@@ -2,7 +2,7 @@
 
 # Copyright IBM 2018-2020 All Rights Reserved
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache-v2
 #
 
 declare -A dict
