@@ -41,6 +41,7 @@ To use this function in your repository perform the following steps:
    on:
      push:
        branches:
+         - main
          - master
 
    jobs:
