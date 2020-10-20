@@ -21,7 +21,7 @@ echo "Looking for problematic words in $(pwd)"
 # create an initial dictionary
 counter=0
 dict=( ["master"]="leader" ["slave"]="follower"
-       ["blacklist"]="denylist" ["whitelist"]="allowlist"
+       ["blacklist"]="blocklist" ["whitelist"]="allowlist"
        ["grandfathered"]="legacy" ["guys"]="folks")
 
 # additionally, populate the dictionary with any
