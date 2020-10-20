@@ -7,7 +7,7 @@ There's only one script in the repo. It replaces problematic words in a code bas
 This is a simple docker container that walks through a directory and changes any
 instance of some problematic words to something more socially acceptable, for instance:
 `slave` to `follower` or `master` to `leader`. You can look at the `dict` we created
-[here](https://github.com/jjasghar/actions-words-really-matter/blob/master/entrypoint.sh#L22-L24) and are more than willing to accept PRs to add to the list.
+[here](https://github.com/jjasghar/actions-words-really-matter/blob/main/entrypoint.sh#L22-L24) and are more than willing to accept PRs to add to the list.
 
 The idea is that this can create a PR for repos via GitHub Actions so we as developers
 can have bots make sure we start to take these words out of our vocabulary.
@@ -28,7 +28,7 @@ docker run -v `pwd`:/source words-matter
 
 The script can also be run as a [GitHub Action](action.yml) and is available in the [GitHub Action Marketplace](https://github.com/marketplace/actions/words-really-matter).
 
-For an example run check out this [sample output](https://github.com/jjasghar/master-to-leader-tester/actions/runs/309359300) and the [corresponding pull request](https://github.com/jjasghar/master-to-leader-tester/pull/3/files) is generated.
+For an example run check out this [resulting PR](https://github.com/jjasghar/words-really-matter-tester/pull/6/files).
 
 To use this function in your repository perform the following steps:
 
