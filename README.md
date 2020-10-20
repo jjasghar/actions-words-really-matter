@@ -37,7 +37,6 @@ To use this function in your repository perform the following steps:
 2. Create a file in `.github/workflows/` and paste the following code:
 
    ```yaml
-
    on:
      push:
        branches:
@@ -52,9 +51,10 @@ To use this function in your repository perform the following steps:
          - name: Checking out our code
            uses: actions/checkout@master
          - name: Remove the problematic words
-           uses: jjasghar/actions-words-really-matter@v2.0.1
+           uses: jjasghar/actions-words-really-matter@v2.1.0
          - name: Create Pull Request
-           uses: peter-evans/create-pull-request@v2
+           id: cpr
+           uses: peter-evans/create-pull-request@v3
            with:
              token: ${{ secrets.GH_TOKEN }}
              commit-message: Remove problematic words
@@ -65,9 +65,18 @@ To use this function in your repository perform the following steps:
                [1]: https://github.com/jjasghar/actions-words-really-matter
          - name: Check outputs
            run: |
-             echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
-             echo "Pull Request Number - ${{ steps.cpr.outputs.pr_number }}"
+             echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+             echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
      ```
+
+## Override or add to the dictionary
+
+If you want to override some of our values or just add your own then pass them as environment variables that start with `WORDS_`. For example, add this block to your GitHub Action workflow
+
+```yaml
+   env:
+     WORDS_foo: bar
+```
 
 ## Tips
 
