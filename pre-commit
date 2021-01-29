@@ -1,0 +1,12 @@
+#!/bin/sh
+
+docker pull quay.io/jjasghar/words-really-matter:v2.2.0
+docker run -v `pwd`:/source quay.io/jjasghar/words-really-matter:v2.2.0
+sleep 5
+echo "#"
+echo "#"
+echo "# If you had any problematic words above, don't continue the commit."
+echo "# Suggested changes are not staged."
+echo "#"
+echo "#"
+git diff

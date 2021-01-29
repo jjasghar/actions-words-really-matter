@@ -71,6 +71,8 @@ To use this function in your repository perform the following steps:
 
 ## Tips
 
+### Debug
+
 If you want to re-build this with debug logs, just add this line to the `Dockerfile`:
 
 ```Dockerfile
@@ -78,6 +80,14 @@ ENV DEBUG=true
 ```
 
 Re-build it locally and run it.
+
+### `pre-commit` hook
+
+If you can't run GitHub Actions and would still like to run this locally with thinking
+about it, you can use the [pre-commit](./pre-commit) hook in this repository. Just place
+this file in `.git/hooks` in the repo you want to test and every time you used `git commit`
+it'll run. If it finds words to change, it'll change them for you, but NOT stage the
+differences.
 
 ## License & Authors
 
