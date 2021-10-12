@@ -100,7 +100,7 @@ differences.
 
 ## License & Authors
 
-If you would like to see the detailed LICENCE click [here](./LICENSE).
+If you would like to see the detailed LICENSE click [here](./LICENSE).
 
 - Author: JJ Asghar <awesome@ibm.com>
 - Author: Steve Martinelli <stevemar@ca.ibm.com>
